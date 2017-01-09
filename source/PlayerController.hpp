@@ -4,8 +4,8 @@
 
 #include "Logger.hpp"
 #include "Updatable.hpp"
-#include "RequireEntity.hpp"
-#include "Entity.hpp"
+#include "RequireComponent.hpp"
+#include "Velocity.hpp"
 
 namespace cn
 {
@@ -18,16 +18,16 @@ namespace cn
 
 	class PlayerController :
 		public Updatable,
-		public RequireEntity
+		public Require<Velocity>
 	{
 	public:
-		PlayerController(Entity& e, MovementKeys keys, float movementForce, float jumpForce);
+		PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce);
 
-		void update(float dt);
+		void update(float);
 
 		// If player is in air then he cannot jump
-		void enableJump();
-		void disableJump();
+		void enableJump() { canJump = true; }
+		void disableJump() { canJump = false; }
 
 	private:
 		MovementKeys keys;

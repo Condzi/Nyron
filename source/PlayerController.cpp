@@ -2,7 +2,7 @@
 
 namespace cn
 {
-	PlayerController::PlayerController(Entity & e, MovementKeys keys, float movementForce, float jumpForce) : RequireEntity(e)
+	PlayerController::PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce) : Require(v)
 	{
 		this->keys = keys;
 		this->movementForce = movementForce;
@@ -11,20 +11,20 @@ namespace cn
 		canJump = true;
 	}
 
-	void PlayerController::update(float dt)
+	void PlayerController::update(float)
 	{
 		sf::Vector2f finalForce(0, 0);
 
 		if (sf::Keyboard::isKeyPressed(keys.left))
-			finalForce.x -= movementForce * dt;
+			finalForce.x -= movementForce;
 
 		if (sf::Keyboard::isKeyPressed(keys.right))
-			finalForce.x += movementForce * dt;
+			finalForce.x += movementForce;
 
 		if (sf::Keyboard::isKeyPressed(keys.jump) && canJump)
-			finalForce.y += jumpForce * dt;
+			finalForce.y -= jumpForce;
 
-		this->entity.getPosition() += finalForce;
+		this->required.getVelocity() += finalForce;
 	}
 }
 

@@ -4,19 +4,21 @@
 
 #include "ResourceCache.hpp"
 #include "Entity.hpp"
+#include "Player.hpp"
 
 int main()
 {
 	sf::RenderWindow window({ 800,600 }, "Platformer", sf::Style::Close);
+	window.setFramerateLimit(60u);
 	sf::Event event;
-	sf::RectangleShape rectangle({ 100.f,100.f });
 
 	cn::ResourceCache<sf::Texture> cache;
-	std::vector<std::string> paths{ "resources/texture.png", "error" };
+	std::vector<std::string> paths{ "resources/texture.png"};
+	cn::Player p;
 
 	cache.load(paths);
 
-	rectangle.setTexture(cache.get("resources/texture.png"));
+	p.setTexture(cache.get("resources/texture.png"));
 
 
 	while (window.isOpen())
@@ -26,8 +28,10 @@ int main()
 				event.key.code == sf::Keyboard::Key::Escape)
 				window.close();
 
+		p.update(1.f / 60);
+
 		window.clear(sf::Color::Cyan);
-		window.draw(rectangle);
+		window.draw(p);
 		window.display();
 	}
 
