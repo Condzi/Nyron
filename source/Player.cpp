@@ -23,8 +23,7 @@ namespace cn
 	void Player::update(float dt)
 	{
 		this->PlayerController::update(dt);
-		this->Velocity::update(dt);
-		// this should be in Velocity::update but it crashes so temporally it is here
+		// this should be in Velocity::update but it crashes for no reason so it is here
 		this->position += velocity * dt;
 		
 		this->sprite.setPosition(this->position);

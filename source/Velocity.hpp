@@ -6,15 +6,10 @@
 
 namespace cn
 {
-	class Velocity :
-		public Updatable,
-		public Require<Entity>
+	class Velocity
 	{
 	public:
-		Velocity(Entity& e) : Require(e) { velocity = { 0,0 }; }
-
-		// something is wrong with entity
-		void update(float dt) { /*required.getPosition().x += velocity.x * dt;*/ }
+		Velocity() { velocity = { 0,0 }; }
 
 		auto& getVelocity() { return this->velocity; }
 		
