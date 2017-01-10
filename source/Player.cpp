@@ -26,6 +26,8 @@ namespace cn
 		this->position += velocity * dt;
 		
 		this->sprite.setPosition(this->position);
+		this->collisionRect.left = this->position.x;
+		this->collisionRect.top = this->position.y;
 	}
 }
 

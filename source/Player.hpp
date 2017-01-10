@@ -7,13 +7,15 @@
 #include "Entity.hpp"
 #include "Velocity.hpp"
 #include "PlayerController.hpp"
+#include "Collider.hpp"
 
 namespace cn
 {
 	class Player final:
 		public Entity,
 		public Velocity, 
-		public PlayerController
+		public PlayerController,
+		public Collider
 	{
 	private:
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
