@@ -2,11 +2,12 @@
 
 namespace cn
 {
-	PlayerController::PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce) : Require(v)
+	PlayerController::PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce)
 	{
 		this->keys = keys;
 		this->movementForce = movementForce;
 		this->jumpForce = jumpForce;
+		this->setRequired(v);
 
 		canJump = true;
 	}
@@ -24,7 +25,7 @@ namespace cn
 		if (sf::Keyboard::isKeyPressed(keys.jump) && canJump)
 			finalForce.y -= jumpForce;
 
-		this->required.getVelocity() += finalForce;
+		this->velocity_req->getVelocity() += finalForce;
 	}
 }
 

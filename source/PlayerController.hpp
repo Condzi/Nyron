@@ -20,6 +20,8 @@ namespace cn
 		public Updatable,
 		public Require<Velocity>
 	{
+		void setRequired(Velocity& vel) { this->velocity_req = &vel; }
+
 	public:
 		PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce);
 
@@ -35,5 +37,7 @@ namespace cn
 		float jumpForce;
 
 		bool canJump;
+
+		Velocity* velocity_req;
 	};
 }

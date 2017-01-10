@@ -5,10 +5,8 @@ namespace cn
 	template<class T>
 	class Require
 	{
-	public:
-		Require(T& t):required(t) {}
-
 	protected:
-		T& required;
+		virtual void setRequired(T& t) = 0;
+
 	};
 }
