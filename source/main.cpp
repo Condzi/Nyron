@@ -22,7 +22,7 @@ int main()
 	std::vector<std::string> paths{ "resources/texture.png"};
 	cn::Player p;
 	cn::Player p2;
-	p2.setPosition({ 0,50 });
+	p2.setPosition({ 0,0 });
 	p2.setCallback(testCall);
 	p2.setCollisionRect({ 0,0,100,100 });
 	p.setCollisionRect({ 0,0,100,100 });

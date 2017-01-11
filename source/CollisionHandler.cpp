@@ -2,24 +2,28 @@
 
 namespace cn
 {
-	bool CollisionHandler::collidedLeft(const sf::FloatRect & a, const sf::FloatRect & b)
+	bool CollisionHandler::collidedLeft(const sf::FloatRect & a, const sf::FloatRect& a_old, const sf::FloatRect & b)
 	{
-		return a.left + a.width >= b.left;
+		return a_old.left + a_old.width < b.left &&
+			a.left + a.width >= b.left;
 	}
 
-	bool CollisionHandler::collidedRight(const sf::FloatRect & a, const sf::FloatRect & b)
+	bool CollisionHandler::collidedRight(const sf::FloatRect & a, const sf::FloatRect& a_old, const sf::FloatRect & b)
 	{
-		return a.left < b.left + b.width;
+		return a_old.left >= b.left + b.width &&
+			a.left < b.left + b.width;
 	}
 
-	bool CollisionHandler::collidedTop(const sf::FloatRect & a, const sf::FloatRect & b)
+	bool CollisionHandler::collidedTop(const sf::FloatRect & a, const sf::FloatRect& a_old, const sf::FloatRect & b)
 	{
-		return a.top + a.height >= b.top;
+		return a_old.top + a_old.height < b.top && 
+			a.top + a.height >= b.top;
 	}
 
-	bool CollisionHandler::collidedBottom(const sf::FloatRect & a, const sf::FloatRect & b)
+	bool CollisionHandler::collidedBottom(const sf::FloatRect & a, const sf::FloatRect& a_old, const sf::FloatRect & b)
 	{
-		return a.top < b.top + b.height;
+		return a_old.top >= b.top + b.height && 
+			a.top < b.top + b.height;
 	}
 
 	void cn::CollisionHandler::registerCollider(Collider * coll)
@@ -56,30 +60,30 @@ namespace cn
 		for(unsigned i = 0; i < colliders.size(); ++i)
 			for (unsigned j = 0; j < colliders.size(); ++j)
 			{
-				if (j == i)
-					continue;
-
 				sf::FloatRect& collA = colliders[i]->collisionRect;
+				sf::FloatRect collAupdated = collA;
+				collAupdated.left += colliders[i]->velocity_req->getVelocity().x * deltaTime;
+				collAupdated.top += colliders[i]->velocity_req->getVelocity().y * deltaTime;
 				sf::FloatRect& collB = colliders[j]->collisionRect;
 
-				if (collA.intersects(collB))
+				if (collAupdated.intersects(collB))
 				{
-					if (this->collidedLeft(collA, collB))
+					if (this->collidedLeft(collAupdated, collA, collB))
 					{
 						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Left));
 						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Right));
 					}
-					else if (this->collidedRight(collA, collB))
+					else if (this->collidedRight(collAupdated, collA, collB))
 					{
 						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Right));
 						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Left));
 					}
-					else if (this->collidedTop(collA, collB))
+					else if (this->collidedTop(collAupdated, collA, collB))
 					{
 						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Top));
 						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Down));
 					}
-					else if (this->collidedBottom(collA, collB))
+					else if (this->collidedBottom(collAupdated, collA, collB))
 					{
 						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Down));
 						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Top));

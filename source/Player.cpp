@@ -9,6 +9,7 @@ namespace cn
 
 	cn::Player::Player() :PlayerController(*this, { sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Space }, 100.f, 150.f)
 	{
+		this->Collider::setRequired(*this);
 	}
 
 	void Player::setTexture(sf::Texture * t)

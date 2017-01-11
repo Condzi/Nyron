@@ -13,10 +13,10 @@ namespace cn
 		public Updatable
 	{
 	private:
-		bool collidedLeft(const sf::FloatRect& a, const sf::FloatRect& b);
-		bool collidedRight(const sf::FloatRect& a, const sf::FloatRect& b);
-		bool collidedTop(const sf::FloatRect& a, const sf::FloatRect& b);
-		bool collidedBottom(const sf::FloatRect& a, const sf::FloatRect& b);
+		bool collidedLeft(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
+		bool collidedRight(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
+		bool collidedTop(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
+		bool collidedBottom(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
 
 	public:
 		CollisionHandler() {}
