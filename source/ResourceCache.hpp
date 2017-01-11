@@ -61,7 +61,7 @@ namespace cn
 		if (result != resources.end())
 			return resources[name].get();
 			
-		Logger::log("Cannot return resource '" + name + "]", Logger::PREFIX_ERROR);
+		Logger::log("Cannot return resource '" + name + "'", Logger::PREFIX_ERROR);
 
 		return nullptr;
 	}

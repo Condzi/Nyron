@@ -5,6 +5,7 @@
 #include "ResourceCache.hpp"
 #include "Entity.hpp"
 #include "Player.hpp"
+#include "Block.hpp"
 #include "CollisionHandler.hpp"
 
 void testCall(cn::CollisionInfo i)
@@ -21,21 +22,21 @@ int main()
 	cn::ResourceCache<sf::Texture> cache;
 	std::vector<std::string> paths{ "resources/texture.png"};
 	cn::Player p;
-	cn::Player p2;
-	p2.setPosition({ 0,0 });
-	p2.setCallback(testCall);
-	p2.setCollisionRect({ 0,0,100,100 });
-	p.setCollisionRect({ 0,0,100,100 });
+	p.setCollisionRect({ 0,0,25,25 });
 	p.setCallback(testCall);
+	cn::Block b;
+	b.setCollisionRect({ 0,0,25,25 });
 
 	cn::CollisionHandler handler;
 	handler.registerCollider(&p);
-	handler.registerCollider(&p2);
+	handler.registerCollider(&b);
 
 	cache.load(paths);
 
+	b.setTexture(cache.get("resources/texture.png"));
 	p.setTexture(cache.get("resources/texture.png"));
 
+	b.setPosition({ 200,200 });
 
 	while (window.isOpen())
 	{
@@ -44,11 +45,13 @@ int main()
 				event.key.code == sf::Keyboard::Key::Escape)
 				window.close();
 
-		p.update(1.f / 60);
 		handler.update(1.f / 60);
+		p.update(1.f / 60);
+		b.update(1.f / 60);
 
 		window.clear(sf::Color::Cyan);
 		window.draw(p);
+		window.draw(b);
 		window.display();
 	}
 

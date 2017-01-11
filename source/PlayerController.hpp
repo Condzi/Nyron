@@ -13,7 +13,8 @@ namespace cn
 	{
 		sf::Keyboard::Key left;
 		sf::Keyboard::Key right;
-		sf::Keyboard::Key jump;
+		sf::Keyboard::Key up;
+		sf::Keyboard::Key down;
 	};
 
 	class PlayerController :
@@ -23,18 +24,13 @@ namespace cn
 		void setRequired(Velocity& vel) { this->velocity_req = &vel; }
 
 	public:
-		PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce);
+		PlayerController(Velocity& v, MovementKeys keys, float movementForce);
 
 		void update(float);
-
-		// If player is in air then he cannot jump
-		void enableJump() { canJump = true; }
-		void disableJump() { canJump = false; }
 
 	private:
 		MovementKeys keys;
 		float movementForce;
-		float jumpForce;
 
 		bool canJump;
 

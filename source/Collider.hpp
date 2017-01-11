@@ -16,6 +16,7 @@ namespace cn
 		Collider* collider = nullptr;
 		enum Side
 		{
+			None = -1,
 			Left = 0,
 			Right,
 			Top,

@@ -60,33 +60,50 @@ namespace cn
 		for(unsigned i = 0; i < colliders.size(); ++i)
 			for (unsigned j = 0; j < colliders.size(); ++j)
 			{
+				if (i == j)
+					continue;
+
 				sf::FloatRect& collA = colliders[i]->collisionRect;
 				sf::FloatRect collAupdated = collA;
-				collAupdated.left += colliders[i]->velocity_req->getVelocity().x * deltaTime;
-				collAupdated.top += colliders[i]->velocity_req->getVelocity().y * deltaTime;
+				if (colliders[i]->velocity_req != nullptr)
+				{
+					collAupdated.left += colliders[i]->velocity_req->getVelocity().x * deltaTime;
+					collAupdated.top += colliders[i]->velocity_req->getVelocity().y * deltaTime;
+				}
 				sf::FloatRect& collB = colliders[j]->collisionRect;
 
 				if (collAupdated.intersects(collB))
 				{
+					CollisionInfo::Side sideA = CollisionInfo::None;
+					CollisionInfo::Side sideB = CollisionInfo::None;
+
 					if (this->collidedLeft(collAupdated, collA, collB))
 					{
-						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Left));
-						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Right));
+						sideA = CollisionInfo::Left;
+						sideB = CollisionInfo::Right;
 					}
 					else if (this->collidedRight(collAupdated, collA, collB))
 					{
-						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Right));
-						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Left));
+						sideA = CollisionInfo::Right;
+						sideB = CollisionInfo::Left;
 					}
 					else if (this->collidedTop(collAupdated, collA, collB))
 					{
-						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Top));
-						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Down));
+						sideA = CollisionInfo::Top;
+						sideB = CollisionInfo::Down;
 					}
 					else if (this->collidedBottom(collAupdated, collA, collB))
 					{
-						colliders[i]->callback(CollisionInfo(colliders[j], CollisionInfo::Down));
-						colliders[j]->callback(CollisionInfo(colliders[i], CollisionInfo::Top));
+						sideA = CollisionInfo::Down;
+						sideB = CollisionInfo::Top;
+					}
+
+					if (sideA != CollisionInfo::None && sideB != CollisionInfo::None)
+					{
+						if (colliders[i]->callback)
+							colliders[i]->callback(CollisionInfo(colliders[j], sideA));
+						if (colliders[j]->callback)
+							colliders[j]->callback(CollisionInfo(colliders[i], sideB));
 					}
 				}
 			}

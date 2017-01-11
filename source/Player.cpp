@@ -7,12 +7,12 @@ namespace cn
 		target.draw(this->sprite, states);
 	}
 
-	cn::Player::Player() :PlayerController(*this, { sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Space }, 100.f, 150.f)
+	cn::Player::Player() :PlayerController(*this, { sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::Down }, 100.f)
 	{
 		this->Collider::setRequired(*this);
 	}
 
-	void Player::setTexture(sf::Texture * t)
+	void Player::setTexture(sf::Texture* t)
 	{
 		if (t == nullptr)
 			Logger::log("Assigning nullptr texture to player", Logger::PREFIX_WARNING);

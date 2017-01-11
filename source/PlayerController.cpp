@@ -2,11 +2,10 @@
 
 namespace cn
 {
-	PlayerController::PlayerController(Velocity& v, MovementKeys keys, float movementForce, float jumpForce)
+	PlayerController::PlayerController(Velocity& v, MovementKeys keys, float movementForce)
 	{
 		this->keys = keys;
 		this->movementForce = movementForce;
-		this->jumpForce = jumpForce;
 		this->setRequired(v);
 
 		canJump = true;
@@ -14,6 +13,7 @@ namespace cn
 
 	void PlayerController::update(float)
 	{
+		this->velocity_req->setVelocity({ 0,0 });
 		sf::Vector2f finalForce(0, 0);
 
 		if (sf::Keyboard::isKeyPressed(keys.left))
@@ -22,8 +22,10 @@ namespace cn
 		if (sf::Keyboard::isKeyPressed(keys.right))
 			finalForce.x += movementForce;
 
-		if (sf::Keyboard::isKeyPressed(keys.jump) && canJump)
-			finalForce.y -= jumpForce;
+		if (sf::Keyboard::isKeyPressed(keys.up))
+			finalForce.y -= movementForce;
+		if (sf::Keyboard::isKeyPressed(keys.down))
+			finalForce.y += movementForce;
 
 		this->velocity_req->getVelocity() += finalForce;
 	}
