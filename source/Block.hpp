@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include "Collider.hpp"
+#include "Logger.hpp"
 
 namespace cn
 {
