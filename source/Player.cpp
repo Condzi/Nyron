@@ -9,13 +9,18 @@ namespace cn
 
 	cn::Player::Player() :PlayerController(*this, { sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::Down }, 100.f)
 	{
-		this->Collider::setRequired(*this);
+		this->Collider::setRequired(*dynamic_cast<Velocity*>(this));
+		this->Collider::setRequired(*dynamic_cast<Entity*>(this));
 	}
 
 	void Player::setTexture(sf::Texture* t)
 	{
 		if (!IS_ASSIGNED(t))
-			Logger::log("Assigning nullptr texture to player", Logger::PREFIX_WARNING);
+		{
+			Logger::log("Cannot set Player texture - texture is nullptr", Logger::PREFIX_ERROR);
+
+			return;
+		}
 
 		this->sprite.setTexture(*t);
 	}

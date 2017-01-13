@@ -113,9 +113,9 @@ namespace cn
 					if (sideA != CollisionInfo::None && sideB != CollisionInfo::None)
 					{
 						if (colliders[i]->callback)
-							colliders[i]->callback(CollisionInfo(colliders[j], sideA));
+							colliders[i]->callback(CollisionInfo(colliders[j], colliders[j]->entity_req, sideA));
 						if (colliders[j]->callback)
-							colliders[j]->callback(CollisionInfo(colliders[i], sideB));
+							colliders[j]->callback(CollisionInfo(colliders[i], colliders[i]->entity_req, sideB));
 					}
 				}
 			}

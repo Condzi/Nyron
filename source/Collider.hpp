@@ -10,10 +10,12 @@
 namespace cn
 {
 	class Collider;
+	class Entity;
 
 	struct CollisionInfo final
 	{
 		Collider* collider = nullptr;
+		Entity* entity = nullptr;
 		enum Side
 		{
 			None = -1,
@@ -21,13 +23,14 @@ namespace cn
 			Right,
 			Top,
 			Down
-		} side = Left;
+		} side = None;
 
-		CollisionInfo(Collider* p, CollisionInfo::Side s) { collider = p, side = s; }
+		CollisionInfo(Collider* p, Entity* e, CollisionInfo::Side s) { collider = p; entity = e; side = s; }
 	};
 
 	class Collider :
-		public Require<Velocity>
+		public Require<Velocity>,
+		public Require<Entity>
 	{
 		friend class CollisionHandler;
 
@@ -40,13 +43,15 @@ namespace cn
 		void setColliderName(const std::string& n) { this->name = n; }
 		void setCollisionRect(const sf::FloatRect& rect) { this->collisionRect = rect; };
 		void setCallback(std::function<void(CollisionInfo)> f) { this->callback = f; }
-		void setRequired(Velocity& v) { velocity_req = &v; }
+		void setRequired(Velocity& v) { this->velocity_req = &v; }
+		void setRequired(Entity& e) { this->entity_req = &e; }
 
 	protected:
 		sf::FloatRect collisionRect;
 		std::function<void(CollisionInfo)> callback;
 
 		Velocity* velocity_req;
+		Entity* entity_req;
 		std::string name;
 	};
 }

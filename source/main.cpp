@@ -11,12 +11,13 @@
 void testCall(cn::CollisionInfo i)
 {
 	cn::Logger::log(i.collider->getColliderName(), cn::Logger::PREFIX_INFO);
+	cn::Logger::log(std::to_string(i.entity->getID()), cn::Logger::PREFIX_INFO);
 }
 
 int main()
 {
-	sf::RenderWindow window({ 800,600 }, "Platformer", sf::Style::Close);
-	window.setFramerateLimit(60u);
+	sf::RenderWindow window({ 1280, 720 }, "Platformer", sf::Style::Close);
+	window.setFramerateLimit(2u);
 	sf::Event event;
 
 	cn::ResourceCache<sf::Texture> cache;
@@ -30,9 +31,6 @@ int main()
 	cn::CollisionHandler handler;
 	handler.registerCollider(&p);
 	handler.registerCollider(&b);
-
-	handler.registerCollider(nullptr);
-	handler.registerCollider(NULL);
 
 	cache.load(paths);
 
