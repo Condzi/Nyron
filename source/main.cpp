@@ -17,7 +17,7 @@ void testCall(cn::CollisionInfo i)
 int main()
 {
 	sf::RenderWindow window({ 1280, 720 }, "Platformer", sf::Style::Close);
-	window.setFramerateLimit(2u);
+	window.setFramerateLimit(60u);
 	sf::Event event;
 
 	cn::ResourceCache<sf::Texture> cache;
@@ -41,6 +41,9 @@ int main()
 	b.setCallback(testCall);
 
 	b.setPosition({ 200,200 });
+	
+	// it is that simple to use flags
+	cn::FLAGS.set(cn::flags::TEST_FLAG);
 
 	while (window.isOpen())
 	{
@@ -53,7 +56,7 @@ int main()
 		p.update(1.f / 60);
 		b.update(1.f / 60);
 
-		window.clear(sf::Color::Cyan);
+		window.clear({ 250,200,150 });
 		window.draw(p);
 		window.draw(b);
 		window.display();
