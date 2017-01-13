@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Updatable.hpp"
-#include "RequireComponent.hpp"
-#include "Entity.hpp"
+#include <SFML/System/Vector2.hpp>
 
 namespace cn
 {

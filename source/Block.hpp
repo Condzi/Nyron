@@ -5,6 +5,8 @@
 
 #include "Collider.hpp"
 #include "Logger.hpp"
+#include "Entity.hpp"
+#include "Updatable.hpp"
 
 namespace cn
 {

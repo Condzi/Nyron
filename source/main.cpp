@@ -10,7 +10,7 @@
 
 void testCall(cn::CollisionInfo i)
 {
-	cn::Logger::log("COLLISION! Side:" + std::to_string(i.side), cn::Logger::PREFIX_INFO);
+	cn::Logger::log(i.collider->getColliderName(), cn::Logger::PREFIX_INFO);
 }
 
 int main()
@@ -35,6 +35,9 @@ int main()
 
 	b.setTexture(cache.get("resources/texture.png"));
 	p.setTexture(cache.get("resources/texture.png"));
+	p.setColliderName("Player");
+	b.setColliderName("Box");
+	b.setCallback(testCall);
 
 	b.setPosition({ 200,200 });
 
@@ -57,3 +60,5 @@ int main()
 
 	return 0;
 }
+
+

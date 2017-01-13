@@ -32,13 +32,14 @@ namespace cn
 		friend class CollisionHandler;
 
 	public:
-		Collider() :collisionRect(0, 0, 0, 0) { velocity_req = nullptr; }
+		Collider() :collisionRect(0, 0, 0, 0) { velocity_req = nullptr; this->name = "<unnamed collider>"; }
 
 		auto& getCollisionRect() { return this->collisionRect; }
+		auto getColliderName() { return this->name; }
+
+		void setColliderName(const std::string& name) { this->name = name; }
 		void setCollisionRect(const sf::FloatRect& rect) { this->collisionRect = rect; };
-
 		void setCallback(std::function<void(CollisionInfo)> f) { this->callback = f; }
-
 		void setRequired(Velocity& v) { velocity_req = &v; }
 
 	protected:
@@ -46,6 +47,6 @@ namespace cn
 		std::function<void(CollisionInfo)> callback;
 
 		Velocity* velocity_req;
-		
+		std::string name;
 	};
 }

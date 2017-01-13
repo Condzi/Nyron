@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics/Drawable.hpp>
 
 namespace cn
