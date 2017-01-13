@@ -13,7 +13,7 @@ namespace cn
 
 	void Block::setTexture(sf::Texture* t)
 	{
-		if (t == nullptr)
+		if (!IS_ASSIGNED(t))
 			Logger::log("Assigning nullptr texture to Block", Logger::PREFIX_WARNING);
 
 		this->sprite.setTexture(*t);

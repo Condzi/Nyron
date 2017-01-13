@@ -8,6 +8,7 @@
 #include "Velocity.hpp"
 #include "PlayerController.hpp"
 #include "Collider.hpp"
+#include "Utility.hpp"
 
 namespace cn
 {

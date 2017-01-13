@@ -6,6 +6,7 @@
 #include "Updatable.hpp"
 #include "RequireComponent.hpp"
 #include "Velocity.hpp"
+#include "Utility.hpp"
 
 namespace cn
 {

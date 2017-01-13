@@ -37,7 +37,7 @@ namespace cn
 		auto& getCollisionRect() { return this->collisionRect; }
 		auto getColliderName() { return this->name; }
 
-		void setColliderName(const std::string& name) { this->name = name; }
+		void setColliderName(const std::string& n) { this->name = n; }
 		void setCollisionRect(const sf::FloatRect& rect) { this->collisionRect = rect; };
 		void setCallback(std::function<void(CollisionInfo)> f) { this->callback = f; }
 		void setRequired(Velocity& v) { velocity_req = &v; }

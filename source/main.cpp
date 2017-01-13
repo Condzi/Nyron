@@ -31,6 +31,9 @@ int main()
 	handler.registerCollider(&p);
 	handler.registerCollider(&b);
 
+	handler.registerCollider(nullptr);
+	handler.registerCollider(NULL);
+
 	cache.load(paths);
 
 	b.setTexture(cache.get("resources/texture.png"));

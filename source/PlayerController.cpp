@@ -13,6 +13,18 @@ namespace cn
 
 	void PlayerController::update(float)
 	{
+		static bool error_informated = false;
+
+		if (!IS_ASSIGNED(this->velocity_req))
+		{
+			Logger::log("Cannot updata PlayerController - velocity_req is not assigned", Logger::PREFIX_ERROR);
+
+			error_informated = true;
+			return;
+		}
+
+		error_informated = false;
+
 		this->velocity_req->setVelocity({ 0,0 });
 		sf::Vector2f finalForce(0, 0);
 

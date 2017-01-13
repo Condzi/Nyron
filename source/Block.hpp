@@ -7,6 +7,7 @@
 #include "Logger.hpp"
 #include "Entity.hpp"
 #include "Updatable.hpp"
+#include "Utility.hpp"
 
 namespace cn
 {

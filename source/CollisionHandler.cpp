@@ -28,6 +28,12 @@ namespace cn
 
 	void cn::CollisionHandler::registerCollider(Collider * coll)
 	{
+		if (!IS_ASSIGNED(coll))
+		{
+			Logger::log("Cannot register collider - collider is not assigned", Logger::PREFIX_ERROR);
+			return;
+		}
+
 		for (Collider* c : this->colliders)
 			if (c == coll)
 			{
@@ -42,6 +48,12 @@ namespace cn
 
 	void CollisionHandler::unregisterCollider(Collider * coll)
 	{
+		if (!IS_ASSIGNED(coll))
+		{
+			Logger::log("Cannot unregister collider - collider is not assigned", Logger::PREFIX_ERROR);
+			return;
+		}
+
 		auto result = std::find(this->colliders.begin(), this->colliders.end(), coll);
 
 		if (result != this->colliders.end())
