@@ -9,7 +9,7 @@ namespace cn
 	public:
 		Velocity() { velocity = { 0,0 }; }
 
-		auto& getVelocity() { return this->velocity; }
+		sf::Vector2f& getVelocity() { return this->velocity; }
 		
 		void setVelocity(const sf::Vector2f& v) { this->velocity = v; }
 

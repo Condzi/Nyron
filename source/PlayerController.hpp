@@ -19,6 +19,7 @@ namespace cn
 		public Updatable,
 		public Require<Velocity>
 	{
+	private:
 		void setRequired(Velocity& vel) { this->velocity_req = &vel; }
 
 	public:

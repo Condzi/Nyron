@@ -37,8 +37,8 @@ namespace cn
 	public:
 		Collider() :collisionRect(0, 0, 0, 0) { velocity_req = nullptr; this->name = "<unnamed collider>"; }
 
-		auto& getCollisionRect() { return this->collisionRect; }
-		auto getColliderName() { return this->name; }
+		sf::FloatRect& getCollisionRect() { return this->collisionRect; }
+		std::string getColliderName() { return this->name; }
 
 		void setColliderName(const std::string& n) { this->name = n; }
 		void setCollisionRect(const sf::FloatRect& rect) { this->collisionRect = rect; };
