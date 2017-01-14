@@ -35,7 +35,7 @@ namespace cn
 		friend class CollisionHandler;
 
 	public:
-		Collider() :collisionRect(0, 0, 0, 0) { velocity_req = nullptr; this->name = "<unnamed collider>"; }
+		Collider() :collisionRect(0, 0, 0, 0), velocity_req(nullptr), name("<unnamed collider>") { }
 
 		sf::FloatRect& getCollisionRect() { return this->collisionRect; }
 		std::string getColliderName() { return this->name; }

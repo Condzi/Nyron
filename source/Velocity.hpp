@@ -7,7 +7,7 @@ namespace cn
 	class Velocity
 	{
 	public:
-		Velocity() { velocity = { 0,0 }; }
+		Velocity(): velocity(0,0) { }
 
 		sf::Vector2f& getVelocity() { return this->velocity; }
 		

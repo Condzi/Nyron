@@ -8,7 +8,7 @@ namespace cn
 		public sf::Drawable
 	{
 	public:
-		Entity() { static std::uint16_t idCounter = 0; id = ++idCounter; position = { 0,0 }; }
+		Entity(): position(0,0) { static std::uint16_t idCounter = 0; id = ++idCounter; }
 		virtual ~Entity() = default;
 
 		std::uint16_t getID() { return this->id; }
