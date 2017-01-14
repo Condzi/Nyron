@@ -8,6 +8,8 @@
 #include "Block.hpp"
 #include "CollisionHandler.hpp"
 
+#include <tmxlite/Map.hpp>
+
 void testCall(cn::CollisionInfo i)
 {
 	cn::Logger::log(i.collider->getColliderName(), cn::Logger::PREFIX_INFO);
@@ -19,6 +21,8 @@ int main()
 	sf::RenderWindow window({ 1280, 720 }, "Platformer", sf::Style::Close);
 	window.setFramerateLimit(60u);
 	sf::Event event;
+
+	tmx::Map map;
 
 	cn::ResourceCache<sf::Texture> cache;
 	std::vector<std::string> paths{ "resources/texture.png"};

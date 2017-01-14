@@ -16,8 +16,8 @@ namespace cn
 	// Use it if you don't want to try to render things that are not on screen
 	inline bool IS_IN_WINDOW_BOUNDS(sf::RenderTarget& t, const sf::FloatRect& r)
 	{
-		auto view = t.getView();
-		sf::Vector2f offset = { view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2};
+		auto& view = t.getView();
+		sf::Vector2f offset{ view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2};
 
 		sf::FloatRect windowBounds{ offset, view.getSize() };
 
