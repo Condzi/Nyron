@@ -14,7 +14,7 @@ namespace cn
 
 	void Block::setTexture(sf::Texture* t)
 	{
-		if (!IS_ASSIGNED(t))
+		if (!t)
 		{
 			Logger::log("Cannot set Block texture - texture is nullptr", Logger::PREFIX_ERROR);
 

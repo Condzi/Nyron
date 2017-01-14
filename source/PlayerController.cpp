@@ -15,7 +15,7 @@ namespace cn
 	{
 		static bool error_informated = false;
 
-		if (!IS_ASSIGNED(this->velocity_req))
+		if (!this->velocity_req)
 		{
 			Logger::log("Cannot updata PlayerController - velocity_req is not assigned", Logger::PREFIX_ERROR);
 

@@ -15,14 +15,6 @@ namespace cn
 	// ... and so on
 	static std::bitset<constans::MAX_FLAGS> FLAGS;
 
-
-	// Checks if poiter is assigned
-	// Returns false if pointer is not assigned
-	inline bool IS_ASSIGNED(const void* ptr) 
-	{ 
-		return !(ptr == nullptr); 
-	}
-
 	// Checks if given rect is in window bounds
 	// Use it if you don't want to try to render things that are not on screen
 	inline bool IS_IN_WINDOW_BOUNDS(sf::RenderTarget& t, const sf::FloatRect& r)

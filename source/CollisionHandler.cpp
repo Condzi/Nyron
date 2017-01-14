@@ -28,7 +28,7 @@ namespace cn
 
 	void cn::CollisionHandler::registerCollider(Collider * coll)
 	{
-		if (!IS_ASSIGNED(coll))
+		if (!coll)
 		{
 			Logger::log("Cannot register collider - collider is not assigned", Logger::PREFIX_ERROR);
 			return;
@@ -48,7 +48,7 @@ namespace cn
 
 	void CollisionHandler::unregisterCollider(Collider * coll)
 	{
-		if (!IS_ASSIGNED(coll))
+		if (!coll)
 		{
 			Logger::log("Cannot unregister collider - collider is not assigned", Logger::PREFIX_ERROR);
 			return;
@@ -77,7 +77,7 @@ namespace cn
 
 				sf::FloatRect& collA = colliders[i]->collisionRect;
 				sf::FloatRect collAupdated = collA;
-				if (IS_ASSIGNED(colliders[i]->velocity_req))
+				if (colliders[i]->velocity_req)
 				{
 					collAupdated.left += colliders[i]->velocity_req->getVelocity().x * deltaTime;
 					collAupdated.top += colliders[i]->velocity_req->getVelocity().y * deltaTime;

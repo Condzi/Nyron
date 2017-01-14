@@ -16,7 +16,7 @@ namespace cn
 
 	void Player::setTexture(sf::Texture* t)
 	{
-		if (!IS_ASSIGNED(t))
+		if (!t)
 		{
 			Logger::log("Cannot set Player texture - texture is nullptr", Logger::PREFIX_ERROR);
 

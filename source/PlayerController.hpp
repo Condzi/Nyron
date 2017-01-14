@@ -12,10 +12,7 @@ namespace cn
 {
 	struct MovementKeys
 	{
-		sf::Keyboard::Key left;
-		sf::Keyboard::Key right;
-		sf::Keyboard::Key up;
-		sf::Keyboard::Key down;
+		sf::Keyboard::Key left, right, up, down;
 	};
 
 	class PlayerController :

@@ -8,7 +8,5 @@ namespace cn
 	{
 		const char* name;
 		std::uint8_t id;
-
-		constexpr item_t(const char* n, std::uint8_t i) :name(n), id(i) { }
 	};
 }
