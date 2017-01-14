@@ -77,7 +77,7 @@ namespace cn
 
 				sf::FloatRect& collA = colliders[i]->collisionRect;
 				sf::FloatRect collAupdated = collA;
-				if (colliders[i]->velocity_req != nullptr)
+				if (IS_ASSIGNED(colliders[i]->velocity_req))
 				{
 					collAupdated.left += colliders[i]->velocity_req->getVelocity().x * deltaTime;
 					collAupdated.top += colliders[i]->velocity_req->getVelocity().y * deltaTime;
