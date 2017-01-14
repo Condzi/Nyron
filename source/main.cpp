@@ -44,6 +44,8 @@ int main()
 	
 	// it is that simple to use flags
 	cn::FLAGS.set(cn::flags::TEST_FLAG);
+	sf::View v = window.getDefaultView();
+	v.setCenter(200, 200);
 
 	while (window.isOpen())
 	{
@@ -56,6 +58,7 @@ int main()
 		p.update(1.f / 60);
 		b.update(1.f / 60);
 
+		window.setView(v);
 		window.clear({ 250,200,150 });
 		window.draw(p);
 		window.draw(b);

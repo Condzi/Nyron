@@ -2,9 +2,10 @@
 
 namespace cn
 {
-	void Player::draw(sf::RenderTarget & target, sf::RenderStates states) const
+	void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		target.draw(this->sprite, states);
+		if(IS_IN_WINDOW_BOUNDS(target, sprite.getGlobalBounds()))
+			target.draw(this->sprite, states);
 	}
 
 	cn::Player::Player() :PlayerController(*this, { sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::Down }, 100.f)
