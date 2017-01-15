@@ -7,6 +7,7 @@
 #include "Player.hpp"
 #include "Block.hpp"
 #include "CollisionHandler.hpp"
+#include "MapLayer.hpp"
 
 #include <tmxlite/Map.hpp>
 
@@ -18,11 +19,15 @@ void testCall(cn::CollisionInfo i)
 
 int main()
 {
-	sf::RenderWindow window({ 1280, 720 }, "Platformer", sf::Style::Close);
+	sf::RenderWindow window({ 1280, 720 }, "Nyron", sf::Style::Close);
 	window.setFramerateLimit(60u);
 	sf::Event event;
 
 	tmx::Map map;
+	map.load("resources/testMap.tmx");
+
+	cn::MapLayer l(map, 0);
+
 
 	cn::ResourceCache<sf::Texture> cache;
 	std::vector<std::string> paths{ "resources/texture.png"};
@@ -64,6 +69,7 @@ int main()
 
 		window.setView(v);
 		window.clear({ 250,200,150 });
+		window.draw(l);
 		window.draw(p);
 		window.draw(b);
 		window.display();
